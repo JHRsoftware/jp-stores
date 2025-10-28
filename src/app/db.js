@@ -4,9 +4,9 @@ import mysql from 'mysql2/promise';
 // Performance-optimized connection pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'Jp_Stores_Pos',
+  user: process.env.DB_USER || 'harshana_Jude',
+  password: process.env.DB_PASSWORD || 'Harshana@123',
+  database: process.env.DB_NAME || 'harshana_jp_stores',
   port: process.env.DB_PORT ? Number(process.env.DB_PORT) : 3306,
   waitForConnections: true,
   connectionLimit: 15,
