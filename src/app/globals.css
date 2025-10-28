@@ -1,0 +1,616 @@
+/* Performance-optimized CSS variables */
+:root {
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.3s ease;
+  --border-radius: 8px;
+  --border-radius-sm: 4px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  --shadow-light: 0 1px 3px var(--shadow);
+  --shadow-medium: 0 4px 6px var(--shadow-medium);
+  --shadow-large: 0 10px 25px var(--shadow-medium);
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
+  
+  /* Default theme colors (will be overridden by theme context) */
+  --background: #ffffff;
+  --background-secondary: #f8f9fa;
+  --background-tertiary: #e9ecef;
+  --foreground: #171717;
+  --foreground-secondary: #495057;
+  --border: #e9ecef;
+  --border-hover: #dee2e6;
+  --primary: #007bff;
+  --primary-hover: #0056b3;
+  --primary-light: #e3f2fd;
+  --success: #28a745;
+  --success-light: #d4edda;
+  --danger: #dc3545;
+  --danger-light: #f8d7da;
+  --warning: #ffc107;
+  --warning-light: #fff3cd;
+  --info: #17a2b8;
+  --info-light: #d1ecf1;
+  --card: #ffffff;
+  --card-hover: #f8f9fa;
+  --input: #ffffff;
+  --input-border: #ced4da;
+  --shadow: rgba(0,0,0,0.1);
+  --shadow-medium: rgba(0,0,0,0.15);
+  --gradient: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+}
+
+/* Performance optimizations */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* Enhanced styling for all common elements */
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Button styles */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  min-height: 40px;
+  gap: var(--spacing-xs);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary {
+  background: var(--background-secondary);
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--background-tertiary);
+  border-color: var(--border-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-light);
+}
+
+.btn-success {
+  background: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
+.btn-success:hover {
+  background: #218838;
+  border-color: #1e7e34;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-danger {
+  background: var(--danger);
+  color: white;
+  border-color: var(--danger);
+}
+
+.btn-danger:hover {
+  background: #c82333;
+  border-color: #bd2130;
+  color: white;
+  text-decoration: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.875rem;
+  min-height: 32px;
+}
+
+.btn-lg {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: 1.125rem;
+  min-height: 48px;
+}
+
+/* Input and form styles */
+input, textarea, select {
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  font-family: inherit;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--foreground);
+  background: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: var(--border-radius);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.form-control::placeholder {
+  color: var(--foreground-secondary);
+  opacity: 0.7;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Card styles */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-light);
+}
+
+.card:hover {
+  background: var(--card-hover);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  background: var(--background-secondary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) var(--spacing-lg) calc(-1 * var(--spacing-lg));
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: var(--spacing-lg);
+}
+
+.card-footer {
+  background: var(--background-secondary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  margin: var(--spacing-lg) calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg)) calc(-1 * var(--spacing-lg));
+  border-top: 1px solid var(--border);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+/* Table styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  transition: background-color var(--transition-fast);
+}
+
+.table th {
+  background: var(--background-secondary);
+  font-weight: 600;
+  color: var(--foreground);
+  border-bottom: 2px solid var(--border);
+}
+
+.table tr:hover {
+  background: var(--card-hover);
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Alert styles */
+.alert {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: 1px solid;
+  margin-bottom: var(--spacing-md);
+  transition: all var(--transition-fast);
+}
+
+.alert-success {
+  background: var(--success-light);
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.alert-danger {
+  background: var(--danger-light);
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.alert-warning {
+  background: var(--warning-light);
+  border-color: var(--warning);
+  color: #856404;
+}
+
+.alert-info {
+  background: var(--info-light);
+  border-color: var(--info);
+  color: var(--info);
+}
+
+/* Badge styles */
+.badge {
+  display: inline-block;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+
+.badge-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.badge-success {
+  background: var(--success);
+  color: white;
+}
+
+.badge-danger {
+  background: var(--danger);
+  color: white;
+}
+
+.badge-warning {
+  background: var(--warning);
+  color: #212529;
+}
+
+/* Loading states */
+.loading {
+  pointer-events: none;
+  opacity: 0.7;
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid var(--primary-light);
+  border-top: 2px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Performance optimizations for better rendering */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Common utility classes for performance */
+.flex {
+  display: flex;
+}
+
+/* Hide native spinners on number inputs while keeping keyboard typing intact */
+/* Works across modern browsers (WebKit, Firefox, Edge/Chromium) */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* For Firefox */
+input[type=number] {
+  -moz-appearance: textfield; /* hides the spinner */
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Optional helper class if you need to apply specifically */
+.no-spinner {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+/* Optimized animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px; /* Better touch targets on mobile */
+  }
+  
+  .card {
+    padding: var(--spacing-md);
+  }
+  
+  .table th,
+  .table td {
+    padding: var(--spacing-sm);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.btn:focus,
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}
